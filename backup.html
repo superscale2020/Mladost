@@ -252,8 +252,14 @@
     }
 
     .gallery-grid {
-      columns: 3;
-      column-gap: 12px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+    }
+
+    /* First photo spans 2 columns */
+    .gallery-grid .photo-card:first-child {
+      grid-column: span 2;
     }
 
     .photo-card {
@@ -262,14 +268,14 @@
       border-radius: 3px;
       cursor: pointer;
       background: var(--cream-dark);
-      break-inside: avoid;
-      margin-bottom: 12px;
-      display: block;
     }
 
+    .photo-card:first-child { aspect-ratio: 16/9; }
+    .photo-card:not(:first-child) { aspect-ratio: 4/3; }
+
     .photo-card img {
-      width: 100%;
-      height: auto;
+      width: 100%; height: 100%;
+      object-fit: cover;
       display: block;
       transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s;
     }
@@ -451,15 +457,15 @@
       #main { margin-left: 0; }
       .topbar { padding-top: 3.5rem; }
 
-      .gallery-grid { columns: 2; }
+      .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+      .gallery-grid .photo-card:first-child { grid-column: span 1; }
     }
 
     @media (max-width: 600px) {
       #gallery { padding: 1.2rem 1rem 2rem; }
       .topbar { padding: 3.5rem 1rem 0; }
       .divider { margin: 1rem 1rem 0; }
-      .gallery-grid { columns: 2; column-gap: 8px; }
-      .photo-card { margin-bottom: 8px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
       #lb-prev { left: -48px; }
       #lb-next { right: -48px; }
     }
@@ -587,20 +593,6 @@ const ROOMS = [
      "images/bal2 (2).jpg",
 "images/bal2 (3).jpg"
     ]
-  },
-  {
-    name: "Hallways",
-    images: [
-      "images/hall (1).jpg",
-      "images/hall (2).jpg",
-"images/hall (3).jpg",
-"images/hall (4).jpg",
-"images/hall (5).jpg",
-"images/hall (6).jpg",
-"images/hall (7).jpg",
-"images/hall (8).jpg",
-"images/hall (9).jpg"
-    ]
   }
 ];
 
@@ -625,7 +617,7 @@ const CONTACT = {
 <!-- ── SIDEBAR ── -->
 <nav id="sidebar" aria-label="Room navigation">
   <div class="sidebar-header">
-    <p class="sidebar-eyebrow">Продава</p>
+    <p class="sidebar-eyebrow">Real Estate</p>
     <h1 class="sidebar-title" id="apt-title">
       Apartment<span id="apt-subtitle"></span>
     </h1>
