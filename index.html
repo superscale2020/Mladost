@@ -210,7 +210,7 @@
 
     /* ── TOP BAR ── */
     .topbar {
-      padding: 2rem 2.5rem 0;
+      padding: 1.8rem 2.5rem 0;
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
@@ -247,7 +247,7 @@
 
     /* ── DESCRIPTION ── */
     #description {
-      padding: 1.8rem 2.5rem 0;
+      padding: 2rem 2.5rem 0;
     }
 
     .description-text {
@@ -506,14 +506,15 @@
       #menu-toggle { display: flex; }
 
       #main { margin-left: 0; }
-      .topbar { padding-top: 3.5rem; }
+      #description { padding-top: 3.5rem; }
 
       .gallery-grid { columns: 2; }
     }
 
     @media (max-width: 600px) {
       #gallery { padding: 1.2rem 1rem 2rem; }
-      .topbar { padding: 3.5rem 1rem 0; }
+      #description { padding: 3.5rem 1rem 0; }
+      .topbar { padding: 1.8rem 1rem 0; }
       .divider { margin: 1rem 1rem 0; }
       .gallery-grid { columns: 2; column-gap: 8px; }
       .photo-card { margin-bottom: 8px; }
@@ -711,17 +712,19 @@ const CONTACT = {
 
 <!-- ── MAIN ── -->
 <main id="main">
-  <div class="topbar">
-    <h2 class="room-heading" id="room-heading">Select a Room</h2>
-    <p class="photo-count-label" id="photo-count"></p>
-  </div>
-  <div class="divider"></div>
-
   <section id="description">
     <p class="description-text" id="apt-description"></p>
     <h3 class="perks-heading" id="perks-heading" hidden>Още позитиви на района</h3>
     <ul class="perks-list" id="perks-list"></ul>
   </section>
+
+  <div class="divider"></div>
+
+  <div class="topbar">
+    <h2 class="room-heading" id="room-heading">Select a Room</h2>
+    <p class="photo-count-label" id="photo-count"></p>
+  </div>
+  <div class="divider"></div>
 
   <section id="gallery" aria-live="polite">
     <div class="gallery-grid" id="gallery-grid"></div>
