@@ -245,63 +245,6 @@
       margin: 1rem 2.5rem 0;
     }
 
-    /* ── DESCRIPTION ── */
-    #description {
-      padding: 1.8rem 2.5rem 0;
-    }
-
-    .description-text {
-      font-family: 'Jost', sans-serif;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 1.75;
-      color: var(--ink-soft);
-      max-width: 760px;
-    }
-
-    .perks-heading {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-weight: 500;
-      font-size: 1.15rem;
-      color: var(--ink);
-      margin-top: 1.4rem;
-      margin-bottom: 0.7rem;
-    }
-
-    .perks-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-      max-width: 760px;
-    }
-
-    .perks-list li {
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
-      font-size: 15px;
-      font-weight: 400;
-      color: var(--ink-soft);
-      letter-spacing: 0.01em;
-    }
-
-    .perks-list li::before {
-      content: '';
-      width: 4px; height: 4px;
-      border-radius: 50%;
-      background: var(--gold);
-      flex-shrink: 0;
-      transform: translateY(-2px);
-    }
-
-    .perks-list .perk-time {
-      color: var(--gold);
-      font-style: italic;
-      white-space: nowrap;
-    }
-
     /* ── GALLERY GRID ── */
     #gallery {
       padding: 1.8rem 2.5rem 3rem;
@@ -561,17 +504,7 @@
 <script>
 const APARTMENT = {
   title:    "Тристаен апартамент 83кв.м.          Цена: 207 000€",
-  details:  ["2 Спални", "Дневна", "Баня", "Тоалетна", "Килер" , "Кухня", "Трапезария", "2 Балкона","Мазе" ],
-  description: "Просторен, светъл и топъл апартамент с чиста площ 83кв.м. и мазе 3кв.м. Състои се от хол, две спални, трапезария, кухненски бокс, килер, тоалетна, баня, две тераси - една в хола и остъклена в кухнята. Много топъл през зимата с минимално пускане на радиатори. Междублоковото пространство е голямо и зелено с детски катерушки. В непосредствена близост има супермаркет и спирка на градски транспорт.",
-  perks: [
-    { time: "2 мин. пеша", label: "Автобусна спирка (213, 305, 314)" },
-    { time: "15 мин. пеша", label: "Метростанция" },
-    { time: "9 мин. пеша", label: "ДГ 56 и ДГ59" },
-    { time: "3 мин. пеша", label: "Супермаркет" },
-    { time: "5 мин. пеша", label: "ДКЦ 25" },
-    { time: "10 мин. пеша", label: "Парк младост 3" },
-    { time: "", label: "Няколко училища в близост" }
-  ]
+  details:  ["2 Спални", "Дневна", "Баня", "Тоалетна", "Килер" , "Кухня", "Трапезария", "2 Балкона","Мазе" ]
 };
 
 // Fill in your image file paths for each room.
@@ -717,12 +650,6 @@ const CONTACT = {
   </div>
   <div class="divider"></div>
 
-  <section id="description">
-    <p class="description-text" id="apt-description"></p>
-    <h3 class="perks-heading" id="perks-heading" hidden>Още позитиви на района</h3>
-    <ul class="perks-list" id="perks-list"></ul>
-  </section>
-
   <section id="gallery" aria-live="polite">
     <div class="gallery-grid" id="gallery-grid"></div>
   </section>
@@ -760,22 +687,6 @@ const CONTACT = {
     el.innerHTML = `<span class="meta-dot"></span><span>${d}</span>`;
     detailsEl.appendChild(el);
   });
-
-  if (APARTMENT.description) {
-    document.getElementById('apt-description').textContent = APARTMENT.description;
-  }
-
-  if (APARTMENT.perks && APARTMENT.perks.length) {
-    const perksList = document.getElementById('perks-list');
-    document.getElementById('perks-heading').hidden = false;
-    APARTMENT.perks.forEach(p => {
-      const li = document.createElement('li');
-      li.innerHTML = p.time
-        ? `<span class="perk-time">${p.time}</span><span>${p.label}</span>`
-        : `<span>${p.label}</span>`;
-      perksList.appendChild(li);
-    });
-  }
 
   const contactBtn = document.getElementById('contact-btn');
   contactBtn.href = `mailto:${CONTACT.email}?subject=Enquiry: ${encodeURIComponent(APARTMENT.title)}`;
